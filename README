@@ -1,0 +1,42 @@
+Tenpay
+======
+
+A Ruby on Rails plugin for Tenpay (Online pay solution from Tencent).
+
+Install
+=======
+
+$ script/plugin install git://github.com/yzhang/tenpay.git
+
+Usage
+=======
+
+1. After you installing the plugin, there should be a tenpay.yml 
+in your RAILS_ENV/config dir, you should edit that file and set
+your spid and key you got from Tencent.
+
+2. To start a transaction, you will need create a new Tenpay::Request 
+instance, for example:
+
+  @request = Tenpay::Request.new('test product', # Product name
+                  1, # Order id, should be unique
+                  4500, # Product price, in cent
+                  'http://return', # Url user will return after the transaction, support Get/Post
+                  'attach data') # Attach data, will be pass to the return url.
+  redirect_to @request.url
+
+This will redirect user to pay page.
+
+3. After user finishing the paying, the return url will be called, below
+code will demo if the request is legal and user finish the paying.
+
+  @response = Tenpay::Response.new(params)
+  if @response.successful?
+    # paying is successful
+  else
+    # it's failed
+  end
+  
+It's all, feedbacks are always welcome, feel free to contact me at zhangyuanyi@gmail.com
+
+Copyright (c) 2009 Yuanyi Zhang, released under the MIT license
