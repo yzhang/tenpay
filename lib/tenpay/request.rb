@@ -7,7 +7,7 @@ module Tenpay
     GATEWAY_URL = "https://www.tenpay.com/cgi-bin/v1.0/pay_gate.cgi"
 
     def initialize(description, order_id, total_fee, 
-                    return_url, attach=nil)
+                    return_url, purchaser_ip='', attach=nil)
       @cmdno = 1
       @date  = Date.today.strftime("%Y%m%d")
       @bank_type = 0
@@ -22,7 +22,7 @@ module Tenpay
       @return_url = return_url
       @attach = attach || 'nil'
       
-      @purchaser_ip = (RAILS_ENV == 'production' ? request.remote_ip : '')
+      @purchaser_ip = (RAILS_ENV == 'production' ? purchaser_ip : '')
     end
     
     def transaction_id
