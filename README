@@ -8,7 +8,7 @@ Install
 
 $ script/plugin install git://github.com/yzhang/tenpay.git
 
-Usage
+Charge
 =======
 
 1. After you installing the plugin, there should be a tenpay.yml 
@@ -37,6 +37,15 @@ code will demo if the request is legal and user finish the paying.
   else
     # it's failed
   end
+  
+Query
+========
+
+If you want to query if user has paid for an order, use below interface:
+
+  @query = Tenpay::Query.new(1, # Order id
+                             Time.now) # Order date
+  @query.response.successful? # true => paid, false => unpaid.
   
 It's all, feedbacks are always welcome, feel free to contact me at zhangyuanyi@gmail.com
 
