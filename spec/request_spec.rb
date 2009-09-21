@@ -6,7 +6,7 @@ require "tenpay"
 describe Tenpay::Request do
   before do
     @request = Tenpay::Request.new('test product', 1, 
-	                 4500, 'http://return', 'order_id=1')
+	                 4500, 'http://return', '', 'order_id=1')
     today = Date.today
     @date = "%d%02d%02d" % [today.year, today.month, today.day]
     @params = "cmdno=1&date=#{@date}&bargainor_id=1900000109&" +
