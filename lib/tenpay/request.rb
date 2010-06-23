@@ -49,7 +49,7 @@ module Tenpay
     def generate_params
       params = "cmdno=#{@cmdno}&date=#{@date}&bargainor_id=#{@spid}&transaction_id=#{transaction_id}" +
                 "&sp_billno=#{@order_id}&total_fee=#{@total_fee}&fee_type=#{@fee_type}" +
-          "&return_url=#{@return_url}&attach=#{CGI.escape(@attach)}&desc=#{@desc}"
+          "&return_url=#{@return_url}&attach=#{CGI.escape(@attach)}&desc=#{CGI.escape(@desc)}"
       params << "&spbill_create_ip=#{@purchaser_ip}" unless @purchaser_ip.nil? || @purchaser_ip == ''
       params
     end
